@@ -1,0 +1,9 @@
+apiVersion: v2
+name: home-exercise
+version: 1.0.0
+description: Helm chart for deploying the app on EKS
+
+dependencies:
+  - name: aws-load-balancer-controller
+    version: "1.4.1"
+    repository: "https://aws.github.io/eks-charts"

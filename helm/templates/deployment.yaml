@@ -1,0 +1,26 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: home-exercise
+  labels:
+    app: home-exercise
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: home-exercise
+  template:
+    metadata:
+      labels:
+        app: home-exercise
+    spec:
+      containers:
+        - name: home-exercise
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 3000
+          env:
+            - name: BUCKET_NAME
+              value: "{{ .Values.bucketName }}"
+            - name: PORT
+              value: "3000"
