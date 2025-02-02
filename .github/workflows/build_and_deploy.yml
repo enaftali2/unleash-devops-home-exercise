@@ -61,8 +61,8 @@ jobs:
         run: |
           aws eks update-kubeconfig --region us-east-1 --name home-exercise-eks
 
-      - name: Remove Helm dependency files (if they exist)
-        run: rm -rf Chart.lock charts/
+      - name: ls
+        run: ls -lat
 
       - name: Helm Lint
         run: helm lint ./helm
