@@ -61,9 +61,10 @@ jobs:
         run: |
           aws eks update-kubeconfig --region us-east-1 --name home-exercise-eks
 
+
       - name: Deploy Helm chart
         run: |
-          helm upgrade --install home-exercise helm \
+          helm upgrade --install helm home-exercise \
             --set image.repository=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/home-exercise-repo \
             --set image.tag=latest \
             --set bucketName=${{ secrets.BUCKET_NAME }}
