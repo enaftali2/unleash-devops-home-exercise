@@ -8,6 +8,7 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    environment: exercise
 
     steps:
       - name: Checkout repository
@@ -34,6 +35,7 @@ jobs:
 
   deploy-to-eks:
     runs-on: ubuntu-latest
+    environment: exercise
     needs: build-and-push
 
     steps:
