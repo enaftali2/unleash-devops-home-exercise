@@ -61,13 +61,6 @@ jobs:
         run: |
           aws eks update-kubeconfig --region us-east-1 --name home-exercise-eks
 
-      - name: helm dependency build
-        run: |
-          helm repo add eks https://aws.github.io/eks-charts
-          helm repo update
-          helm dependency update
-          helm dependency build helm dependency build ./helm
-
       - name: Deploy Helm chart
         run: |
           helm upgrade --install home-exercise helm \
