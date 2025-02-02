@@ -39,6 +39,9 @@ jobs:
     needs: build-and-push
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -61,11 +64,12 @@ jobs:
         run: |
           aws eks update-kubeconfig --region us-east-1 --name home-exercise-eks
 
-      - name: ls
-        run: ls -lat
-
-      - name: Helm Lint
-        run: helm lint ./helm
+      - name: helm dependency build
+        run: |
+          helm repo add eks https://aws.github.io/eks-charts
+          helm repo update
+          helm dependency update
+          helm dependency build helm dependency build ./helm
 
       - name: Deploy Helm chart
         run: |
