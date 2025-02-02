@@ -7,7 +7,8 @@ RUN npm install --only=production
 
 COPY . .
 
-# Build TypeScript files
+RUN npm install --save-dev @types/node
+
 RUN npm run build
 
 EXPOSE 3000
