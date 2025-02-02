@@ -61,10 +61,15 @@ jobs:
         run: |
           aws eks update-kubeconfig --region us-east-1 --name home-exercise-eks
 
+      - name: Remove Helm dependency files (if they exist)
+        run: rm -rf Chart.lock charts/
+
+      - name: Helm Lint
+        run: helm lint ./helm
 
       - name: Deploy Helm chart
         run: |
-          helm upgrade --install helm home-exercise \
+          helm upgrade --install home-exercise ./helm \
             --set image.repository=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/home-exercise-repo \
             --set image.tag=latest \
             --set bucketName=${{ secrets.BUCKET_NAME }}
