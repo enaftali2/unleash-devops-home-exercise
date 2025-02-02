@@ -55,10 +55,17 @@ jobs:
       - name: Install Helm
         run: |
           curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+          helm version 
 
       - name: Update kubeconfig
         run: |
           aws eks update-kubeconfig --region us-east-1 --name home-exercise-eks
+
+      - name: List Files for Debugging
+        run: |
+          pwd  
+          ls -l 
+          ls -l helm 
 
       - name: Deploy Helm chart
         run: |
