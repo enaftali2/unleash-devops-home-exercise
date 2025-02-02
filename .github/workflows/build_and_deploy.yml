@@ -63,7 +63,7 @@ jobs:
 
       - name: Deploy Helm chart
         run: |
-          helm upgrade --install home-exercise ./helm \
+          helm upgrade --install home-exercise helm \
             --set image.repository=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/home-exercise-repo \
             --set image.tag=latest \
             --set bucketName=${{ secrets.BUCKET_NAME }}
